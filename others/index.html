@@ -1,27 +1,129 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Swinging Flickering Lightbulb</title>
   <link rel="stylesheet" href="./style.css">
+  <style>
+    /* General styles */
+    body {
+      background-color: black;
+      margin: 0;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
+    /* Bulb container */
+    .bulb-container {
+      position: relative;
+      animation: swing 2s ease-in-out infinite alternate;
+    }
+
+    /* Swing animation */
+    @keyframes swing {
+      0% {
+        transform: rotate(-5deg);
+      }
+      100% {
+        transform: rotate(5deg);
+      }
+    }
+
+    /* Wire styles */
+    .wire {
+      width: 3px;
+      height: 150px;
+      background: grey;
+      margin: 0 auto;
+    }
+
+    /* Connector styles */
+    .connector {
+      width: 30px;
+      height: 20px;
+      background: grey;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .grove {
+      width: 5px;
+      height: 5px;
+      background: #444;
+      border-radius: 50%;
+    }
+
+    /* Bulb styles */
+    .bulb {
+      width: 120px;
+      height: 160px;
+      background: radial-gradient(circle, rgba(255, 255, 200, 0.2), rgba(0, 0, 0, 1));
+      border-radius: 50% 50% 40% 40%;
+      position: relative;
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 0 30px rgba(255, 255, 200, 0.6);
+    }
+
+    /* Metal wires inside bulb */
+    .metal-wire {
+      width: 10px;
+      height: 30px;
+      background: grey;
+      position: absolute;
+    }
+
+    .metal-wire:nth-child(1) {
+      transform: rotate(-15deg);
+      left: 30px;
+    }
+
+    .metal-wire:nth-child(2) {
+      transform: rotate(15deg);
+      right: 30px;
+    }
+
+    .metal-wire:nth-child(3) {
+      top: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 40px;
+    }
+
+    /* Text styles */
+    .bulb::before {
+      content: "Haffz ♡ Adrian";
+      position: absolute;
+      color: white;
+      font-size: 18px;
+      font-style: italic;
+      font-weight: bold;
+      text-align: center;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+    }
+  </style>
 </head>
 <body>
-<!-- partial:index.partial.html -->
-<div class="bulb-container">
-  <div class="wire"></div>
-  <div class="connector">
-    <div class="grove"></div>
-    <div class="grove"></div>
-    <div class="grove"></div>
+  <div class="bulb-container">
+    <div class="wire"></div>
+    <div class="connector">
+      <div class="grove"></div>
+      <div class="grove"></div>
+      <div class="grove"></div>
+    </div>
+    <div class="bulb">
+      <div class="metal-wire"></div>
+      <div class="metal-wire"></div>
+      <div class="metal-wire"></div>
+    </div>
   </div>
-  <div class="bulb">
-    <div class="metal-wire"></div>
-    <div class="metal-wire"></div>
-    <div class="metal-wire"></div>
-  </div>
-</div>
-<!-- partial -->
-  
 </body>
 </html>
