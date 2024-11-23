@@ -3,15 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Swinging Flickering Lightbulb</title>
+  <title>Forever Friendship</title>
   <style>
-    /* CSS from the provided file */
     body {
       background-color: #1d1e22;
       margin: 0;
       display: flex;
       justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      font-family: Arial, sans-serif;
     }
+
+    /* Text Animation */
+    #word {
+      position: absolute;
+      z-index: 5;
+      color: white;
+      font-size: 3rem;
+      font-style: italic;
+      font-weight: bold;
+      letter-spacing: 2px;
+      animation: fadeInOut 5s ease-in-out infinite, swingText 3s ease-in-out infinite;
+    }
+
+    @keyframes fadeInOut {
+      0%, 100% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes swingText {
+      0% {
+        transform: rotate(5deg);
+      }
+      50% {
+        transform: rotate(-5deg);
+      }
+      100% {
+        transform: rotate(5deg);
+      }
+    }
+
+    /* Bulb Animation */
     .bulb-container {
       width: 300px;
       height: 500px;
@@ -21,8 +60,9 @@
       align-items: center;
       z-index: 1;
       transform-origin: top;
-      animation: swing 3s ease-in-out infinite;
+      animation: swingBulb 3s ease-in-out infinite;
     }
+
     .wire {
       width: 4px;
       height: 250px;
@@ -30,6 +70,7 @@
       position: relative;
       z-index: 1;
     }
+
     .connector {
       background: #292929;
       width: 30px;
@@ -41,12 +82,14 @@
       align-items: center;
       z-index: 2;
     }
+
     .grove {
       background: #424242;
       width: 34px;
       height: 3px;
       z-index: 3;
     }
+
     .bulb {
       margin-top: -2px;
       width: 92px;
@@ -58,11 +101,12 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      position: relative;
+      justify-content: flex-start;
+      gap: -1px;
       z-index: 1;
       animation: flash 10s linear infinite;
     }
+
     .metal-wire {
       position: relative;
       border: 1px solid black;
@@ -71,16 +115,20 @@
       border-radius: 50%;
       z-index: 2;
     }
+
     .metal-wire:nth-child(1) {
       top: -1px;
     }
+
     .metal-wire:nth-child(2) {
       top: -7px;
     }
+
     .metal-wire:nth-child(3) {
       top: -13px;
     }
-    @keyframes swing {
+
+    @keyframes swingBulb {
       0% {
         transform: rotate(15deg);
       }
@@ -91,48 +139,21 @@
         transform: rotate(15deg);
       }
     }
+
     @keyframes flash {
-      0% {
+      0%, 10%, 75% {
         background: rgba(255, 255, 255, 0.1);
         box-shadow: 0px 0px 0px 0px transparent;
       }
-      1% {
+      1%, 40%, 80% {
         background: rgba(255, 235, 0, 1);
         box-shadow: 0px 0px 150px 75px rgba(245, 223, 77, 1);
       }
-      10% {
-        background: rgba(255, 255, 255, 0.1);
-        box-shadow: 0px 0px 0px 0px transparent;
-      }
-      39.999% {
-        background: rgba(255, 235, 0, 1);
-        box-shadow: 0px 0px 150px 75px rgba(245, 223, 77, 1);
-      }
-      40% {
-        background: rgba(255, 255, 255, 0.1);
-        box-shadow: 0px 0px 0px 0px transparent;
-      }
-      75% {
-        background: rgba(255, 255, 255, 0.1);
-        box-shadow: 0px 0px 0px 0px transparent;
-      }
-      75.5% {
-        background: rgba(255, 235, 0, 1);
-        box-shadow: 0px 0px 150px 75px rgba(245, 223, 77, 1);
-      }
-    }
-    /* Add text inside the bulb */
-    .bulb::after {
-      content: "Haffz ♡ Adrian";
-      color: black;
-      font-size: 14px;
-      font-weight: bold;
-      text-align: center;
-      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
     }
   </style>
 </head>
 <body>
+  <!-- Swinging Bulb -->
   <div class="bulb-container">
     <div class="wire"></div>
     <div class="connector">
@@ -146,5 +167,8 @@
       <div class="metal-wire"></div>
     </div>
   </div>
+
+  <!-- Text Animation -->
+  <div id="word">Haffz ♡ Adrian</div>
 </body>
 </html>
