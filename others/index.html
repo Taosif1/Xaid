@@ -4,110 +4,131 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Swinging Flickering Lightbulb</title>
-  <link rel="stylesheet" href="./style.css">
   <style>
-    /* General styles */
+    /* CSS from the provided file */
     body {
-      background-color: black;
+      background-color: #1d1e22;
       margin: 0;
-      overflow: hidden;
       display: flex;
       justify-content: center;
-      align-items: center;
-      height: 100vh;
     }
-
-    /* Bulb container */
     .bulb-container {
-      position: relative;
-      animation: swing 2s ease-in-out infinite alternate;
+      width: 300px;
+      height: 500px;
+      position: absolute;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 1;
+      transform-origin: top;
+      animation: swing 3s ease-in-out infinite;
     }
-
-    /* Swing animation */
+    .wire {
+      width: 4px;
+      height: 250px;
+      background: black;
+      position: relative;
+      z-index: 1;
+    }
+    .connector {
+      background: #292929;
+      width: 30px;
+      aspect-ratio: 4/5;
+      border-radius: 1px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      z-index: 2;
+    }
+    .grove {
+      background: #424242;
+      width: 34px;
+      height: 3px;
+      z-index: 3;
+    }
+    .bulb {
+      margin-top: -2px;
+      width: 92px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: #ffeb00;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0px 0px 150px 75px rgba(245, 223, 77, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      animation: flash 10s linear infinite;
+    }
+    .metal-wire {
+      position: relative;
+      border: 1px solid black;
+      width: 22px;
+      height: 11px;
+      border-radius: 50%;
+      z-index: 2;
+    }
+    .metal-wire:nth-child(1) {
+      top: -1px;
+    }
+    .metal-wire:nth-child(2) {
+      top: -7px;
+    }
+    .metal-wire:nth-child(3) {
+      top: -13px;
+    }
     @keyframes swing {
       0% {
-        transform: rotate(-5deg);
+        transform: rotate(15deg);
+      }
+      50% {
+        transform: rotate(-15deg);
       }
       100% {
-        transform: rotate(5deg);
+        transform: rotate(15deg);
       }
     }
-
-    /* Wire styles */
-    .wire {
-      width: 3px;
-      height: 150px;
-      background: grey;
-      margin: 0 auto;
+    @keyframes flash {
+      0% {
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0px 0px 0px 0px transparent;
+      }
+      1% {
+        background: rgba(255, 235, 0, 1);
+        box-shadow: 0px 0px 150px 75px rgba(245, 223, 77, 1);
+      }
+      10% {
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0px 0px 0px 0px transparent;
+      }
+      39.999% {
+        background: rgba(255, 235, 0, 1);
+        box-shadow: 0px 0px 150px 75px rgba(245, 223, 77, 1);
+      }
+      40% {
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0px 0px 0px 0px transparent;
+      }
+      75% {
+        background: rgba(255, 255, 255, 0.1);
+        box-shadow: 0px 0px 0px 0px transparent;
+      }
+      75.5% {
+        background: rgba(255, 235, 0, 1);
+        box-shadow: 0px 0px 150px 75px rgba(245, 223, 77, 1);
+      }
     }
-
-    /* Connector styles */
-    .connector {
-      width: 30px;
-      height: 20px;
-      background: grey;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-    }
-
-    .grove {
-      width: 5px;
-      height: 5px;
-      background: #444;
-      border-radius: 50%;
-    }
-
-    /* Bulb styles */
-    .bulb {
-      width: 120px;
-      height: 160px;
-      background: radial-gradient(circle, rgba(255, 255, 200, 0.2), rgba(0, 0, 0, 1));
-      border-radius: 50% 50% 40% 40%;
-      position: relative;
-      margin: 0 auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 0 30px rgba(255, 255, 200, 0.6);
-    }
-
-    /* Metal wires inside bulb */
-    .metal-wire {
-      width: 10px;
-      height: 30px;
-      background: grey;
-      position: absolute;
-    }
-
-    .metal-wire:nth-child(1) {
-      transform: rotate(-15deg);
-      left: 30px;
-    }
-
-    .metal-wire:nth-child(2) {
-      transform: rotate(15deg);
-      right: 30px;
-    }
-
-    .metal-wire:nth-child(3) {
-      top: 5px;
-      left: 50%;
-      transform: translateX(-50%);
-      height: 40px;
-    }
-
-    /* Text styles */
-    .bulb::before {
+    /* Add text inside the bulb */
+    .bulb::after {
       content: "Haffz ♡ Adrian";
-      position: absolute;
-      color: white;
-      font-size: 18px;
-      font-style: italic;
+      color: black;
+      font-size: 14px;
       font-weight: bold;
       text-align: center;
-      text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+      text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
     }
   </style>
 </head>
