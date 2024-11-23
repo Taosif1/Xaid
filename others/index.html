@@ -1,174 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Forever Friendship</title>
-  <style>
-    body {
-      background-color: #1d1e22;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-      position: relative;
-      font-family: Arial, sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forever Friendship</title>
+    <style>
+        /* General body styles */
+        body {
+            background-color: black;
+            color: white;
+            text-align: center;
+            font-style: italic;
+            font-weight: 100;
+            font-size: 10vw;
+            letter-spacing: 20px;
+            line-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
 
-    /* Text Animation */
-    #word {
-      position: absolute;
-      z-index: 5;
-      color: white;
-      font-size: 3rem;
-      font-style: italic;
-      font-weight: bold;
-      letter-spacing: 2px;
-      animation: fadeInOut 5s ease-in-out infinite, swingText 3s ease-in-out infinite;
-    }
+        /* Text styles and animation */
+        #word {
+            opacity: 0;
+            transition: opacity 2s;
+            animation: swing 3s ease-in-out infinite;
+            position: absolute;
+            z-index: 2;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
 
-    @keyframes fadeInOut {
-      0%, 100% {
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
-    }
+        @keyframes swing {
+            0%, 100% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            50% {
+                transform: translate(-50%, -50%) rotate(10deg);
+            }
+        }
 
-    @keyframes swingText {
-      0% {
-        transform: rotate(5deg);
-      }
-      50% {
-        transform: rotate(-5deg);
-      }
-      100% {
-        transform: rotate(5deg);
-      }
-    }
+        /* Bulb Animation */
+        .bulb-container {
+            width: 300px;
+            height: 500px;
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 1;
+            transform-origin: top;
+            animation: swingBulb 3s ease-in-out infinite;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(0deg);
+        }
 
-    /* Bulb Animation */
-    .bulb-container {
-      width: 300px;
-      height: 500px;
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      z-index: 1;
-      transform-origin: top;
-      animation: swingBulb 3s ease-in-out infinite;
-    }
+        .wire {
+            width: 4px;
+            height: 250px;
+            background: black;
+            position: relative;
+            z-index: 1;
+        }
 
-    .wire {
-      width: 4px;
-      height: 250px;
-      background: black;
-      position: relative;
-      z-index: 1;
-    }
+        .connector {
+            background: #292929;
+            width: 30px;
+            aspect-ratio: 4/5;
+            border-radius: 1px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+            z-index: 2;
+        }
 
-    .connector {
-      background: #292929;
-      width: 30px;
-      aspect-ratio: 4/5;
-      border-radius: 1px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
-      align-items: center;
-      z-index: 2;
-    }
+        .grove {
+            background: #424242;
+            width: 34px;
+            height: 3px;
+            z-index: 3;
+        }
 
-    .grove {
-      background: #424242;
-      width: 34px;
-      height: 3px;
-      z-index: 3;
-    }
+        .bulb {
+            margin-top: -2px;
+            width: 92px;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: #ffeb00;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0px 0px 150px 75px rgba(245, 223, 77, 1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            gap: -1px;
+            z-index: 1;
+            animation: flash 10s linear infinite;
+        }
 
-    .bulb {
-      margin-top: -2px;
-      width: 92px;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      background: #ffeb00;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0px 0px 150px 75px rgba(245, 223, 77, 1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      gap: -1px;
-      z-index: 1;
-      animation: flash 10s linear infinite;
-    }
+        .metal-wire {
+            position: relative;
+            border: 1px solid black;
+            width: 22px;
+            height: 11px;
+            border-radius: 50%;
+            z-index: 2;
+        }
 
-    .metal-wire {
-      position: relative;
-      border: 1px solid black;
-      width: 22px;
-      height: 11px;
-      border-radius: 50%;
-      z-index: 2;
-    }
+        .metal-wire:nth-child(1) {
+            top: -1px;
+        }
 
-    .metal-wire:nth-child(1) {
-      top: -1px;
-    }
+        .metal-wire:nth-child(2) {
+            top: -7px;
+        }
 
-    .metal-wire:nth-child(2) {
-      top: -7px;
-    }
+        .metal-wire:nth-child(3) {
+            top: -13px;
+        }
 
-    .metal-wire:nth-child(3) {
-      top: -13px;
-    }
+        @keyframes swingBulb {
+            0% {
+                transform: rotate(15deg);
+            }
+            50% {
+                transform: rotate(-15deg);
+            }
+            100% {
+                transform: rotate(15deg);
+            }
+        }
 
-    @keyframes swingBulb {
-      0% {
-        transform: rotate(15deg);
-      }
-      50% {
-        transform: rotate(-15deg);
-      }
-      100% {
-        transform: rotate(15deg);
-      }
-    }
-
-    @keyframes flash {
-      0%, 10%, 75% {
-        background: rgba(255, 255, 255, 0.1);
-        box-shadow: 0px 0px 0px 0px transparent;
-      }
-      1%, 40%, 80% {
-        background: rgba(255, 235, 0, 1);
-        box-shadow: 0px 0px 150px 75px rgba(245, 223, 77, 1);
-      }
-    }
-  </style>
+        @keyframes flash {
+            0%, 10%, 75% {
+                background: rgba(255, 255, 255, 0.1);
+                box-shadow: 0px 0px 0px 0px transparent;
+            }
+            1%, 40%, 80% {
+                background: rgba(255, 235, 0, 1);
+                box-shadow: 0px 0px 150px 75px rgba(245, 223, 77, 1);
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Swinging Bulb -->
-  <div class="bulb-container">
-    <div class="wire"></div>
-    <div class="connector">
-      <div class="grove"></div>
-      <div class="grove"></div>
-      <div class="grove"></div>
+    <!-- Swinging Bulb -->
+    <div class="bulb-container">
+        <div class="wire"></div>
+        <div class="connector">
+            <div class="grove"></div>
+            <div class="grove"></div>
+            <div class="grove"></div>
+        </div>
+        <div class="bulb">
+            <div class="metal-wire"></div>
+            <div class="metal-wire"></div>
+            <div class="metal-wire"></div>
+        </div>
     </div>
-    <div class="bulb">
-      <div class="metal-wire"></div>
-      <div class="metal-wire"></div>
-      <div class="metal-wire"></div>
-    </div>
-  </div>
 
-  <!-- Text Animation -->
-  <div id="word">Haffz ♡ Adrian</div>
+    <!-- Text Animation -->
+    <div id="word">Haffz ♡ Adrian</div>
+
+    <script>
+        const wordContainer = document.querySelector("#word");
+
+        function showNextWord() {
+            wordContainer.style.opacity = 1;
+            setTimeout(hideWord, 2500); // Show for 2.5 seconds
+        }
+
+        function hideWord() {
+            wordContainer.style.opacity = 0;
+            setTimeout(showNextWord, 2500); // Hide for 2.5 seconds, then show again
+        }
+
+        showNextWord();
+    </script>
 </body>
 </html>
