@@ -27,7 +27,7 @@
             white-space: nowrap;
             opacity: 0;
             transform: scale(0.8) rotate(0deg);
-            animation: fadeInOut 5s infinite, scaleRotate 5s infinite;
+            animation: fadeInOut 5s infinite, scaleRotateAlternate 5s infinite;
         }
 
         /* Fade in and out animation */
@@ -40,16 +40,22 @@
             }
         }
 
-        /* Scale and rotate animation */
-        @keyframes scaleRotate {
+        /* Scale and rotate animation with alternating direction */
+        @keyframes scaleRotateAlternate {
             0% {
                 transform: scale(0.8) rotate(0deg);
             }
+            25% {
+                transform: scale(1) rotate(10deg); /* Rotate from the left */
+            }
             50% {
-                transform: scale(1) rotate(10deg);
+                transform: scale(1) rotate(0deg); /* Neutral */
+            }
+            75% {
+                transform: scale(1) rotate(-10deg); /* Rotate from the right */
             }
             100% {
-                transform: scale(0.8) rotate(0deg);
+                transform: scale(0.8) rotate(0deg); /* Back to start */
             }
         }
     </style>
